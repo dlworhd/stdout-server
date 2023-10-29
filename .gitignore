@@ -38,3 +38,7 @@ out/
 
 *.yml
 *.properties
+!.github/workflows/deploy.yml
+!gradle/wrapper/gradle-wrapper.properties
+
+!src/main/resources/application-prod.yml

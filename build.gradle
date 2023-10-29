@@ -4,7 +4,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.3'
 }
 
-group = 'site.weedly'
+group = 'site.stdout'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.json:json:20231013'
+    implementation 'mysql:mysql-connector-java:8.0.21'
     implementation 'org.jsoup:jsoup:1.7.2'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
@@ -39,4 +40,12 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.withType(Jar) {
+    archiveFileName.set("stdout.jar") // JAR 파일 이름 설정 (원하는 이름으로 변경)
+}
+
+jar {
+    enabled = false
 }
