@@ -51,7 +51,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ubuntu/stdout
-            docker-compose down --rmi all
+            cd /home/ubuntu/common
+            docker-compose down --rmi weedly
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/stdout:latest
             docker-compose up -d 

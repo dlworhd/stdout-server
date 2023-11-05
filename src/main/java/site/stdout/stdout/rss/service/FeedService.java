@@ -127,7 +127,6 @@ public class FeedService {
 										.build()
 						);
 					} catch (Exception e) {
-						e.printStackTrace();
 
 					}
 				}
@@ -135,7 +134,6 @@ public class FeedService {
 				List<Feed> filteredFeeds = feeds.stream().filter(feed -> isEmptyGuid(feed.getGuid())).collect(Collectors.toList());
 				feedRepository.saveAll(filteredFeeds);
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 
 		}

@@ -3,10 +3,8 @@ package site.stdout.stdout.rss.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import site.stdout.stdout.rss.repository.ChannelRepository;
 
 import java.time.LocalDateTime;
 
@@ -29,4 +27,5 @@ public class ScheduleService {
 	public void cacheEvict(){
 		log.info("[{}] Cache Evict", LocalDateTime.now());
 	}
+
 }

@@ -1,7 +1,6 @@
 package site.stdout.stdout.rss.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
@@ -53,7 +52,6 @@ public class ChannelService {
 
 			feedService.rss(List.of(newChannel));
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
 	}
