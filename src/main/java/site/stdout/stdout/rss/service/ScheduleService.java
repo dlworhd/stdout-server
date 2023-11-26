@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class ScheduleService {
 
-	private final FeedService feedService;
+	private final ChannelItemService channelItemService;
 
 	//24시간
 	@Scheduled(initialDelay = 86_400_000, fixedDelay = 86_400_000)
 	public void handleRss(){
-		feedService.allChannelRss();
+//		feedService.allChannelRss();
 		cacheEvict();
 	}
 

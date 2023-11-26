@@ -4,7 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 import org.junit.jupiter.api.Test;
 
-public class FeedTest {
+public class ChannelItemTest {
 
 	@Test
 	void whitelist(){
