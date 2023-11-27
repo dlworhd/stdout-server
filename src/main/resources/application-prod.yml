@@ -20,7 +20,14 @@ spring:
       on-profile: prod
 
 images-dir: ${IMAGES_DIR}
+images-temp-dir: ${IMAGES_TEMP_DIR}
 logging:
   level:
     root: INFO
 
+api:
+  image: https://${artx.host}/v1/images
+
+artx:
+  port: 8080
+  host: api.stdout.site

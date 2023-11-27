@@ -23,7 +23,7 @@ public class ScheduleService {
 	}
 
 	//24시간
-	@CacheEvict(value = "feeds", allEntries = true, cacheManager = "redisCacheManager")
+	@CacheEvict(value = "items", allEntries = true, cacheManager = "redisCacheManager")
 	public void cacheEvict(){
 		log.info("[{}] Cache Evict", LocalDateTime.now());
 	}

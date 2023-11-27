@@ -4,21 +4,29 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import site.stdout.stdout.rss.dto.ChannelItemCreate;
+import site.stdout.stdout.rss.dto.ChannelItemResponse;
 import site.stdout.stdout.rss.entity.Channel;
 import site.stdout.stdout.rss.entity.ChannelItem;
 import site.stdout.stdout.rss.repository.ChannelRepository;
 import site.stdout.stdout.rss.repository.ChannelItemRepository;
+import site.stdout.stdout.rss.type.ReadType;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
+
+import static site.stdout.stdout.rss.type.ReadType.*;
 
 @Slf4j
 @Service
@@ -37,7 +45,7 @@ public class ChannelItemService {
 			DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US)
 	);
 
-	@Scheduled(cron = "* * 1, 13 * * *")
+	@Scheduled(cron = "* * */12 * * *")
 	@Transactional
 	public void saveItems(){
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -61,7 +69,7 @@ public class ChannelItemService {
 				List<ChannelItem> channelItems = distinctedChannelItemsCreates.stream()
 						.map(item -> ChannelItem.from(item, channel))
 						.collect(Collectors.toList());
-				channelItemRepository.saveAllAndFlush(channelItems);
+				channelItemRepository.saveAll(channelItems);
 
 			} catch (Exception e) {
 				log.warn(e.getMessage());
@@ -69,6 +77,22 @@ public class ChannelItemService {
 //			ops.set(channel.getName() + "_ITEM", null);
 		}
 
+	}
+
+	@Transactional(readOnly = true)
+	public Page<ChannelItemResponse> readItems(ReadType type, Pageable pageable) {
+		if(type == ALL){
+			return channelItemRepository.readAll(pageable);
+		}
+		if(type == DOMESTIC){
+			return channelItemRepository.readAllByDOMESTIC(pageable);
+		}
+
+		if(type == INTERNATIONAL){
+			return channelItemRepository.readAllByINTERNATIONAL(pageable);
+		}
+
+		throw new IllegalArgumentException();
 	}
 
 }

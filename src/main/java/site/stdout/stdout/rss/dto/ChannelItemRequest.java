@@ -2,7 +2,7 @@ package site.stdout.stdout.rss.dto;
 
 import lombok.Getter;
 
-public class FeedRequest {
+public class ChannelItemRequest {
 
 	@Getter
 	public static class ReWrite{

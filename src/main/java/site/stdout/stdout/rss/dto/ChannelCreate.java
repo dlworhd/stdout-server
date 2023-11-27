@@ -6,8 +6,10 @@ public class ChannelCreate {
 
 	@Getter
 	public static class Request {
+		private String channelIcon;
 		private String channelName;
-		private boolean isNational;
+		private String channelSubname;
+		private boolean isInternational;
 	}
 
 }

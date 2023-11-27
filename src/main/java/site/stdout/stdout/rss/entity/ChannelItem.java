@@ -31,7 +31,7 @@ public class ChannelItem extends BaseEntity {
 	private String guid;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "feed_id")
+	@JoinColumn(name = "channel_id")
 	private Channel channel;
 
 	private String title;
