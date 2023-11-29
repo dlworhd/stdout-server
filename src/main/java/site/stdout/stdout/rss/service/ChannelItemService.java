@@ -45,7 +45,7 @@ public class ChannelItemService {
 			DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US)
 	);
 
-	@Scheduled(cron = "* * */12 * * *")
+	@Scheduled(cron = "* * 13 * * *")
 	@Transactional
 	public void saveItems(){
 		ObjectMapper objectMapper = new ObjectMapper();
