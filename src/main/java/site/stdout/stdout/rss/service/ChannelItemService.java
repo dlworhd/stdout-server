@@ -61,11 +61,6 @@ public class ChannelItemService {
 				List<ChannelItemCreate> channelItemCreates = objectMapper.readValue(value, new TypeReference<List<ChannelItemCreate>>() {});
 				List<ChannelItemCreate> distinctedChannelItemsCreates = channelItemCreates.stream().distinct().collect(Collectors.toList());
 
-				distinctedChannelItemsCreates.stream().forEach(x -> {
-					log.info("{}",x.getGuid());
-				});
-
-
 				List<ChannelItem> channelItems = distinctedChannelItemsCreates.stream()
 						.map(item -> ChannelItem.from(item, channel))
 						.collect(Collectors.toList());

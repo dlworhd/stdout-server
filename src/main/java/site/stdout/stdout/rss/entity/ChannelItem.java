@@ -36,12 +36,18 @@ public class ChannelItem extends BaseEntity {
 
 	private String title;
 
-	@Column(columnDefinition = "TEXT")
+	@Lob
+	@Column(columnDefinition = "MEDIUMTEXT")
 	private String thumbnail;
 
+	@Lob
+	@Column(columnDefinition = "MEDIUMTEXT")
 	private String description;
 
+	@Lob
+	@Column(columnDefinition = "MEDIUMTEXT")
 	private String link;
+
 	private LocalDate publishedAt;
 
 	@Override
